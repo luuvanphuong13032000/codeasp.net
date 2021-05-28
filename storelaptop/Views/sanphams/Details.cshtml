@@ -1,0 +1,70 @@
+﻿@model storelaptop.Models.sanpham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+
+<div>
+    <h4 style="text-align:center;margin-top:50px">Chi Tiết Sản Phẩm</h4>
+    <hr />
+    <table class="table" style="text-align:center;border:1px black solid;width:1000px;margin:0 auto">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.masanpham)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.anh)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.tensanpham)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.mota)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.gia)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.danhmucsanpham.tendanhmucsanpham)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.masanpham)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.anh)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tensanpham)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.mota)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.gia)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.danhmucsanpham.tendanhmucsanpham)
+            </td>
+        </tr>
+
+    </table>
+</div>
+<p style="text-align:center;margin-top:20px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.masanpham }) |
+    <button> @Html.ActionLink("Back to List", "Index")</button>
+</p>

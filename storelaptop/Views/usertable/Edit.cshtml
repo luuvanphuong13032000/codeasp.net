@@ -1,0 +1,82 @@
+﻿@model storelaptop.Models.user_table
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />
+    <br />
+    <div class="form-horizontal">
+        <h4 style="text-align:center">Sửa Thông Tin Tài Khoản</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <span style="margin-left:300px">
+                @Html.LabelFor(model => model.user_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            </span>
+            <div class="col-md-10" style="margin-left:300px;width:600px">
+                @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:300px">
+                @Html.LabelFor(model => model.pass_word, htmlAttributes: new { @class = "control-label col-md-2" })
+            </span>
+            <div class="col-md-10" style="margin-left:300px;width:600px">
+                @Html.EditorFor(model => model.pass_word, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pass_word, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:300px">
+                @Html.LabelFor(model => model.full_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            </span>
+            <div class="col-md-10" style="margin-left:300px;width:600px">
+                @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 " style="margin-left:300px;margin-top:20px">
+                <input type="submit" value="Save" class="btn btn-default" style="background-color:orange" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="text-align:center;margin-top:40px">
+    <button style="background-color:orange">@Html.ActionLink("Back to List", "Index")</button>
+</div>
+            </div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.full_name, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</div>
+        </div>
+    }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+</body>
+</html>

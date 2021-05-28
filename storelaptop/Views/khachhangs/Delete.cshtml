@@ -1,0 +1,77 @@
+﻿@model storelaptop.Models.khachhang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+
+<div>
+    <h4 style="text-align:center;margin-top:50px">Xoá Khách Hàng</h4>
+    <hr />
+    <table class="table" style="text-align:center;border:1px black solid;width:1000px;margin:0 auto">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.makhachhang)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.tenkhachhang)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.ngaysinh)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.diachi)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.sodienthoai)
+            </th>
+            <th sstyle="text-align:center">
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.makhachhang)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tenkhachhang)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ngaysinh)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.diachi)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.sodienthoai)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.email)
+            </td>
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center;margin-top:20px">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <button>    @Html.ActionLink("Back to List", "Index")</button>
+        </div>
+    }
+</div>
+

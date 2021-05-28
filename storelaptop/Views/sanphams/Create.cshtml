@@ -1,0 +1,103 @@
+﻿@model storelaptop.Models.sanpham
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+    function BrowseServer() {
+        var finder = new CKFinder();
+        //finder.basePath = '../';
+        finder.selectActionFunction = SetFileField;
+        finder.popup();
+    }
+    function SetFileField(fileUrl) {
+        document.getElementById('anh').value = fileUrl;
+    }
+</script>
+
+@using (Html.BeginForm("Create", "sanphams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="text-align:center; margin-top:50px">Thêm Sản Phẩm</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <span style="margin-left:150px">
+                @Html.LabelFor(model => model.anh, htmlAttributes: new { @class = "control-label col-md-2" })
+                </span>
+                <div class="col-md-10" style="margin-left:150px;width:900px">
+                    @Html.EditorFor(model => model.anh, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                    @Html.ValidationMessageFor(model => model.anh, "", new { @class = "text-danger" })
+                </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:150px">
+                @Html.LabelFor(model => model.tensanpham, htmlAttributes: new { @class = "control-label col-md-2" })
+                </span>
+                <div class="col-md-10" style="margin-left:150px;width:900px">
+                    @Html.EditorFor(model => model.tensanpham, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tensanpham, "", new { @class = "text-danger" })
+                </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:150px">
+                @Html.LabelFor(model => model.mota, htmlAttributes: new { @class = "control-label col-md-2" })
+                </span>
+                <div class="col-md-10" style="margin-left:150px;width:900px">
+                    @Html.TextAreaFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" }, @id = "mota" })
+                    @Html.ValidationMessageFor(model => model.mota, "", new { @class = "text-danger" })
+                    <script>
+                        CKEDITOR.replace("mota",
+                            {
+                                filebrowserBrowseUrl: '/content/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/content/ckfinder/ckfinder.html?type=Images',
+                                filebrowserFlashBrowseUrl: '/content/ckfinder/ckfinder.html?type=Flash',
+                                filebrowserUploadUrl: '/content/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/content/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                filebrowserFlashUploadUrl: '/content/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+                            });</script>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:150px">
+                @Html.LabelFor(model => model.gia, htmlAttributes: new { @class = "control-label col-md-2" })
+                </span>
+                <div class="col-md-10" style="margin-left:150px;width:900px">
+                    @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                </div>
+        </div>
+
+        <div class="form-group">
+            <span class = "control-label col-md-2" style="margin-left:150px"> Tên Hãng Sản Phẩm</span>
+           
+            <div class="col-md-10"  style="margin-left:150px;width:900px">
+                @Html.DropDownList("madanhmucsanpham", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.madanhmucsanpham, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="margin-left:150px; margin-top:30px">
+                <input type="submit" value="Create" class="btn btn-default" style="background-color:orange" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left:750px">
+    <button style="background-color:orange">@Html.ActionLink("Back to List", "Index")</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

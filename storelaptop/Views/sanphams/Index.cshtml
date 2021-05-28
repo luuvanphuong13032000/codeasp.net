@@ -1,0 +1,86 @@
+﻿@model IEnumerable<storelaptop.Models.sanpham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+
+<h2 style="text-align:center; margin-top:50px">Danh Sách Sản Phẩm</h2>
+
+<p style="text-align:center">
+    <button>   @Html.ActionLink("Thêm Sản Phẩm", "Create")</button>
+</p>
+@using (Html.BeginForm("Index", "tintucs", FormMethod.Get))
+{
+    <p style="text-align:center">
+        Nhập Tên Tìm kiếm: @Html.TextBox("SearchString")
+        <input type="submit" value="Tìm Kiếm" />
+    </p>
+}
+
+    <table class="table" style="text-align:center;border:1px black solid;width:1200px;margin:0 auto;margin-bottom:100px">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.masanpham)
+            </th>
+            <th style="text-align:center;width:200px">
+                @Html.DisplayNameFor(model => model.anh)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.tensanpham)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.mota)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.gia)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.danhmucsanpham.tendanhmucsanpham)
+            </th>
+            <th style="text-align:center; width:250px">Chức Năng</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.masanpham)
+                </td>
+                <td>
+                    <img src="~/Anh/@item.anh" width="200px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tensanpham)
+                </td>
+                <td>
+                    @Html.Raw(item.mota)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.danhmucsanpham.tendanhmucsanpham)
+                </td>
+                <td>
+                    <button> @Html.ActionLink("Edit", "Edit", new { id = item.masanpham })</button> |
+                    <button> @Html.ActionLink("Details", "Details", new { id = item.masanpham })</button> |
+                    <button>  @Html.ActionLink("Delete", "Delete", new { id = item.masanpham })</button>
+                </td>
+            </tr>
+        }
+
+    </table>

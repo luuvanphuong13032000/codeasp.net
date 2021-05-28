@@ -1,0 +1,56 @@
+﻿@model storelaptop.Models.danhmucsanpham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4 style="text-align:center;margin-top:50px">Xoá Danh Mục Sản Phẩm</h4>
+    <hr />
+    </p>
+
+    <style>
+
+        .table tr th {
+            background-color: yellow;
+            border: 2px black solid
+        }
+
+        .table tr td {
+            border: 2px black solid
+        }
+    </style>
+    <table class="table" style="text-align:center;border:1px black solid;width:600px;margin:0 auto">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.madanhmucsanpham)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.tendanhmucsanpham)
+            </th>
+
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayFor(model => model.madanhmucsanpham)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tendanhmucsanpham)
+            </td>
+        </tr>
+
+    </table>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center;margin-top:20px">
+            <input type="submit" value="Delete" class="btn btn-default" />|
+            <button>  @Html.ActionLink("Back to List", "Index")</button>
+        </div>
+    }
+</div>

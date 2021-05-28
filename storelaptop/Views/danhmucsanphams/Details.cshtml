@@ -1,0 +1,48 @@
+﻿@model storelaptop.Models.danhmucsanpham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 style="text-align:center;margin-top:50px">Chi Tiết Danh Mục Sản Phẩm</h4>
+<hr />
+    </p>
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+<table class="table" style="text-align:center;border:1px black solid;width:600px;margin:0 auto">
+    <tr>
+        <th style="background-color:yellow">
+            @Html.DisplayNameFor(model => model.madanhmucsanpham)
+        </th>
+        <th style="background-color:yellow">
+            @Html.DisplayNameFor(model => model.tendanhmucsanpham)
+        </th>
+
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.madanhmucsanpham)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tendanhmucsanpham)
+        </td>
+    </tr>
+
+</table>
+
+<p style="text-align:center;margin-top:20px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.madanhmucsanpham }) |
+    <button>@Html.ActionLink("Back to List", "Index")</button>
+</p>

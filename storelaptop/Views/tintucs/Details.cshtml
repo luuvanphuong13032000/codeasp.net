@@ -1,0 +1,71 @@
+﻿@model storelaptop.Models.tintuc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+
+
+<div>
+    <h4 style="text-align:center;margin-top:50px">Chi Tiết Tin Tức</h4>
+    <hr />
+    <table class="table" style="text-align:center;border:1px black solid;width:1000px;margin:0 auto">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.matintuc)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.anh)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.tentintuc)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.mota)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.chitiet)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.danhmuctintuc.tendanhmuctintuc)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.matintuc)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.anh)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tentintuc)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.mota)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.chitiet)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.danhmuctintuc.tendanhmuctintuc)
+            </td>
+        </tr>
+
+    </table>
+</div>
+<p style="text-align:center;margin-top:20px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.matintuc }) |
+    <button>  @Html.ActionLink("Back to List", "Index")</button>
+</p>

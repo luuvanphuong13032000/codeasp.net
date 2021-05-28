@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="quantriModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="danhmucsanpham">
+          <Key>
+            <PropertyRef Name="madanhmucsanpham" />
+          </Key>
+          <Property Name="madanhmucsanpham" Type="int" Nullable="false" />
+          <Property Name="tendanhmucsanpham" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="danhmuctintuc">
+          <Key>
+            <PropertyRef Name="madanhmuctintuc" />
+          </Key>
+          <Property Name="madanhmuctintuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tendanhmuctintuc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="makhachhang" />
+          </Key>
+          <Property Name="makhachhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenkhachhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaysinh" Type="date" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="sodienthoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="manhanvien" />
+          </Key>
+          <Property Name="manhanvien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anh" Type="nvarchar" MaxLength="50" />
+          <Property Name="tennhanvien" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaysinh" Type="date" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="sodienthoai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="masanpham" />
+          </Key>
+          <Property Name="masanpham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anh" Type="nvarchar" MaxLength="50" />
+          <Property Name="tensanpham" Type="nvarchar" MaxLength="50" />
+          <Property Name="mota" Type="nvarchar" MaxLength="250" />
+          <Property Name="gia" Type="nvarchar" MaxLength="50" />
+          <Property Name="madanhmucsanpham" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tintuc">
+          <Key>
+            <PropertyRef Name="matintuc" />
+          </Key>
+          <Property Name="matintuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anh" Type="nvarchar" MaxLength="50" />
+          <Property Name="tentintuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="mota" Type="nvarchar" MaxLength="250" />
+          <Property Name="chitiet" Type="nvarchar" MaxLength="50" />
+          <Property Name="madanhmuctintuc" Type="int" />
+        </EntityType>
+        <EntityType Name="user_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass_word" Type="nvarchar" MaxLength="50" />
+          <Property Name="full_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_sanpham_danhmucsanpham">
+          <End Role="danhmucsanpham" Type="Self.danhmucsanpham" Multiplicity="0..1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danhmucsanpham">
+              <PropertyRef Name="madanhmucsanpham" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="madanhmucsanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tintuc_danhmuctintuc">
+          <End Role="danhmuctintuc" Type="Self.danhmuctintuc" Multiplicity="0..1" />
+          <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danhmuctintuc">
+              <PropertyRef Name="madanhmuctintuc" />
+            </Principal>
+            <Dependent Role="tintuc">
+              <PropertyRef Name="madanhmuctintuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quantriModelStoreContainer">
+          <EntitySet Name="danhmucsanpham" EntityType="Self.danhmucsanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="danhmuctintuc" EntityType="Self.danhmuctintuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tintuc" EntityType="Self.tintuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_table" EntityType="Self.user_table" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_sanpham_danhmucsanpham" Association="Self.FK_sanpham_danhmucsanpham">
+            <End Role="danhmucsanpham" EntitySet="danhmucsanpham" />
+            <End Role="sanpham" EntitySet="sanpham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tintuc_danhmuctintuc" Association="Self.FK_tintuc_danhmuctintuc">
+            <End Role="danhmuctintuc" EntitySet="danhmuctintuc" />
+            <End Role="tintuc" EntitySet="tintuc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quantriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="danhmucsanpham">
+          <Key>
+            <PropertyRef Name="madanhmucsanpham" />
+          </Key>
+          <Property Name="madanhmucsanpham" Type="Int32" Nullable="false" />
+          <Property Name="tendanhmucsanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sanphams" Relationship="Self.FK_sanpham_danhmucsanpham" FromRole="danhmucsanpham" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="danhmuctintuc">
+          <Key>
+            <PropertyRef Name="madanhmuctintuc" />
+          </Key>
+          <Property Name="madanhmuctintuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tendanhmuctintuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_danhmuctintuc" FromRole="danhmuctintuc" ToRole="tintuc" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="makhachhang" />
+          </Key>
+          <Property Name="makhachhang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenkhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sodienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="manhanvien" />
+          </Key>
+          <Property Name="manhanvien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tennhanvien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sodienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="masanpham" />
+          </Key>
+          <Property Name="masanpham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tensanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mota" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="gia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="madanhmucsanpham" Type="Int32" />
+          <NavigationProperty Name="danhmucsanpham" Relationship="Self.FK_sanpham_danhmucsanpham" FromRole="sanpham" ToRole="danhmucsanpham" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tintuc">
+          <Key>
+            <PropertyRef Name="matintuc" />
+          </Key>
+          <Property Name="matintuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tentintuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mota" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="chitiet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="madanhmuctintuc" Type="Int32" />
+          <NavigationProperty Name="danhmuctintuc" Relationship="Self.FK_tintuc_danhmuctintuc" FromRole="tintuc" ToRole="danhmuctintuc" />
+        </EntityType>
+        <EntityType Name="user_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass_word" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_sanpham_danhmucsanpham">
+          <End Role="danhmucsanpham" Type="Self.danhmucsanpham" Multiplicity="0..1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danhmucsanpham">
+              <PropertyRef Name="madanhmucsanpham" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="madanhmucsanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tintuc_danhmuctintuc">
+          <End Role="danhmuctintuc" Type="Self.danhmuctintuc" Multiplicity="0..1" />
+          <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danhmuctintuc">
+              <PropertyRef Name="madanhmuctintuc" />
+            </Principal>
+            <Dependent Role="tintuc">
+              <PropertyRef Name="madanhmuctintuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quantriEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="danhmucsanphams" EntityType="Self.danhmucsanpham" />
+          <EntitySet Name="danhmuctintucs" EntityType="Self.danhmuctintuc" />
+          <EntitySet Name="khachhangs" EntityType="Self.khachhang" />
+          <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+          <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tintucs" EntityType="Self.tintuc" />
+          <EntitySet Name="user_table" EntityType="Self.user_table" />
+          <AssociationSet Name="FK_sanpham_danhmucsanpham" Association="Self.FK_sanpham_danhmucsanpham">
+            <End Role="danhmucsanpham" EntitySet="danhmucsanphams" />
+            <End Role="sanpham" EntitySet="sanphams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tintuc_danhmuctintuc" Association="Self.FK_tintuc_danhmuctintuc">
+            <End Role="danhmuctintuc" EntitySet="danhmuctintucs" />
+            <End Role="tintuc" EntitySet="tintucs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quantriModelStoreContainer" CdmEntityContainer="quantriEntities">
+          <EntitySetMapping Name="danhmucsanphams">
+            <EntityTypeMapping TypeName="quantriModel.danhmucsanpham">
+              <MappingFragment StoreEntitySet="danhmucsanpham">
+                <ScalarProperty Name="madanhmucsanpham" ColumnName="madanhmucsanpham" />
+                <ScalarProperty Name="tendanhmucsanpham" ColumnName="tendanhmucsanpham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="danhmuctintucs">
+            <EntityTypeMapping TypeName="quantriModel.danhmuctintuc">
+              <MappingFragment StoreEntitySet="danhmuctintuc">
+                <ScalarProperty Name="madanhmuctintuc" ColumnName="madanhmuctintuc" />
+                <ScalarProperty Name="tendanhmuctintuc" ColumnName="tendanhmuctintuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khachhangs">
+            <EntityTypeMapping TypeName="quantriModel.khachhang">
+              <MappingFragment StoreEntitySet="khachhang">
+                <ScalarProperty Name="makhachhang" ColumnName="makhachhang" />
+                <ScalarProperty Name="tenkhachhang" ColumnName="tenkhachhang" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhanviens">
+            <EntityTypeMapping TypeName="quantriModel.nhanvien">
+              <MappingFragment StoreEntitySet="nhanvien">
+                <ScalarProperty Name="manhanvien" ColumnName="manhanvien" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="tennhanvien" ColumnName="tennhanvien" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanphams">
+            <EntityTypeMapping TypeName="quantriModel.sanpham">
+              <MappingFragment StoreEntitySet="sanpham">
+                <ScalarProperty Name="masanpham" ColumnName="masanpham" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="madanhmucsanpham" ColumnName="madanhmucsanpham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="quantriModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tintucs">
+            <EntityTypeMapping TypeName="quantriModel.tintuc">
+              <MappingFragment StoreEntitySet="tintuc">
+                <ScalarProperty Name="matintuc" ColumnName="matintuc" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="tentintuc" ColumnName="tentintuc" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="chitiet" ColumnName="chitiet" />
+                <ScalarProperty Name="madanhmuctintuc" ColumnName="madanhmuctintuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_table">
+            <EntityTypeMapping TypeName="quantriModel.user_table">
+              <MappingFragment StoreEntitySet="user_table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="pass_word" ColumnName="pass_word" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

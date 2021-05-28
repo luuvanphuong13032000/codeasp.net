@@ -1,0 +1,68 @@
+﻿@model storelaptop.Models.user_table
+
+@{
+    Layout = null;
+}
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+<br />
+<br />
+<br />
+<div>
+    <h4 style="text-align:center">Xoá Tài Khoản</h4>
+    <hr />
+    <table class="table" style="text-align:center;border:1px black solid;width:600px;margin:0 auto">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.user_name)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.pass_word)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.full_name)
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.user_name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.pass_word)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.full_name)
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center;margin-top:20px">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <button> @Html.ActionLink("Back to List", "Index")</button>
+        </div>
+    }
+</div>

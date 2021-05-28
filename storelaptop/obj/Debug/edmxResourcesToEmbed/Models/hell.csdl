@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quantriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="danhmucsanpham">
+    <Key>
+      <PropertyRef Name="madanhmucsanpham" />
+    </Key>
+    <Property Name="madanhmucsanpham" Type="Int32" Nullable="false" />
+    <Property Name="tendanhmucsanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sanphams" Relationship="Self.FK_sanpham_danhmucsanpham" FromRole="danhmucsanpham" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="danhmuctintuc">
+    <Key>
+      <PropertyRef Name="madanhmuctintuc" />
+    </Key>
+    <Property Name="madanhmuctintuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tendanhmuctintuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_danhmuctintuc" FromRole="danhmuctintuc" ToRole="tintuc" />
+  </EntityType>
+  <EntityType Name="khachhang">
+    <Key>
+      <PropertyRef Name="makhachhang" />
+    </Key>
+    <Property Name="makhachhang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenkhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+    <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sodienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="manhanvien" />
+    </Key>
+    <Property Name="manhanvien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tennhanvien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+    <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sodienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sanpham">
+    <Key>
+      <PropertyRef Name="masanpham" />
+    </Key>
+    <Property Name="masanpham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tensanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mota" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="gia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="madanhmucsanpham" Type="Int32" />
+    <NavigationProperty Name="danhmucsanpham" Relationship="Self.FK_sanpham_danhmucsanpham" FromRole="sanpham" ToRole="danhmucsanpham" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tintuc">
+    <Key>
+      <PropertyRef Name="matintuc" />
+    </Key>
+    <Property Name="matintuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tentintuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mota" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="chitiet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="madanhmuctintuc" Type="Int32" />
+    <NavigationProperty Name="danhmuctintuc" Relationship="Self.FK_tintuc_danhmuctintuc" FromRole="tintuc" ToRole="danhmuctintuc" />
+  </EntityType>
+  <EntityType Name="user_table">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pass_word" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_sanpham_danhmucsanpham">
+    <End Role="danhmucsanpham" Type="Self.danhmucsanpham" Multiplicity="0..1" />
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danhmucsanpham">
+        <PropertyRef Name="madanhmucsanpham" />
+      </Principal>
+      <Dependent Role="sanpham">
+        <PropertyRef Name="madanhmucsanpham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_danhmuctintuc">
+    <End Role="danhmuctintuc" Type="Self.danhmuctintuc" Multiplicity="0..1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danhmuctintuc">
+        <PropertyRef Name="madanhmuctintuc" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="madanhmuctintuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="quantriEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="danhmucsanphams" EntityType="Self.danhmucsanpham" />
+    <EntitySet Name="danhmuctintucs" EntityType="Self.danhmuctintuc" />
+    <EntitySet Name="khachhangs" EntityType="Self.khachhang" />
+    <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+    <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tintucs" EntityType="Self.tintuc" />
+    <EntitySet Name="user_table" EntityType="Self.user_table" />
+    <AssociationSet Name="FK_sanpham_danhmucsanpham" Association="Self.FK_sanpham_danhmucsanpham">
+      <End Role="danhmucsanpham" EntitySet="danhmucsanphams" />
+      <End Role="sanpham" EntitySet="sanphams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_danhmuctintuc" Association="Self.FK_tintuc_danhmuctintuc">
+      <End Role="danhmuctintuc" EntitySet="danhmuctintucs" />
+      <End Role="tintuc" EntitySet="tintucs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

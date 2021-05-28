@@ -1,0 +1,57 @@
+﻿@model IEnumerable<storelaptop.Models.danhmuctintuc>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .table tr th {
+        background-color: yellow;
+        border: 2px black solid
+    }
+
+    .table tr td {
+        border: 2px black solid
+    }
+</style>
+<h2 style="text-align:center;margin-top:50px">Danh Sách Các Danh Mục Tin Tức</h2>
+<p style="text-align:center">
+    <button>   @Html.ActionLink("Thêm Danh Muc Tin Tức", "Create")</button>
+    @using (Html.BeginForm("Index", "danhmuctintucs", FormMethod.Get))
+    {
+    <p style="text-align:center">
+        Nhập Tên Tìm kiếm: @Html.TextBox("SearchString")
+        <input type="submit" value="Tìm Kiếm" />
+    </p>
+}
+    <table class="table" style="text-align:center;border:1px black solid;width:900px;margin:0 auto;margin-bottom:100px">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.madanhmuctintuc)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.tendanhmuctintuc)
+            </th>
+            <th style="text-align:center">Chức Năng</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.madanhmuctintuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tendanhmuctintuc)
+                </td>
+                <td>
+                    <button> @Html.ActionLink("Edit", "Edit", new { id = item.madanhmuctintuc })</button> |
+                    <button>@Html.ActionLink("Details", "Details", new { id = item.madanhmuctintuc })</button> |
+                    <button>   @Html.ActionLink("Delete", "Delete", new { id = item.madanhmuctintuc })</button>
+                </td>
+            </tr>
+        }
+
+    </table>
