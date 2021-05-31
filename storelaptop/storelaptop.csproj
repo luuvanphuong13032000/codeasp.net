@@ -64,6 +64,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -147,6 +153,7 @@
     <Compile Include="Controllers\nhanviensController.cs" />
     <Compile Include="Controllers\sanphamsController.cs" />
     <Compile Include="Controllers\tintucsController.cs" />
+    <Compile Include="Controllers\TrangchuController.cs" />
     <Compile Include="Controllers\usertableController.cs" />
     <Compile Include="Controllers\user_tableController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1230,6 +1237,7 @@
     <Content Include="Content\ckfinder\skins\v1\skin.js" />
     <Content Include="Content\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Content\ckfinder\translations.txt" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\pa\css\style.css" />
     <Content Include="Content\pi\assets\demo\chart-area-demo.js" />
     <Content Include="Content\pi\assets\demo\chart-bar-demo.js" />
@@ -1239,6 +1247,82 @@
     <Content Include="Content\pi\css\styles.css" />
     <Content Include="Content\pi\js\datatables-simple-demo.js" />
     <Content Include="Content\pi\js\scripts.js" />
+    <Content Include="Content\po\css\animate.css" />
+    <Content Include="Content\po\css\bootstrap.min.css" />
+    <Content Include="Content\po\css\font-awesome.min.css" />
+    <Content Include="Content\po\css\main.css" />
+    <Content Include="Content\po\css\prettyPhoto.css" />
+    <Content Include="Content\po\css\price-range.css" />
+    <Content Include="Content\po\css\responsive.css" />
+    <Content Include="Content\po\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\po\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\po\images\404\404.png" />
+    <Content Include="Content\po\images\blog\blog-one.jpg" />
+    <Content Include="Content\po\images\blog\blog-three.jpg" />
+    <Content Include="Content\po\images\blog\blog-two.jpg" />
+    <Content Include="Content\po\images\blog\man-four.jpg" />
+    <Content Include="Content\po\images\blog\man-one.jpg" />
+    <Content Include="Content\po\images\blog\man-three.jpg" />
+    <Content Include="Content\po\images\blog\man-two.jpg" />
+    <Content Include="Content\po\images\blog\socials.png" />
+    <Content Include="Content\po\images\cart\one.png" />
+    <Content Include="Content\po\images\cart\three.png" />
+    <Content Include="Content\po\images\cart\two.png" />
+    <Content Include="Content\po\images\home\bg_border.png" />
+    <Content Include="Content\po\images\home\gallery1.jpg" />
+    <Content Include="Content\po\images\home\gallery2.jpg" />
+    <Content Include="Content\po\images\home\gallery3.jpg" />
+    <Content Include="Content\po\images\home\gallery4.jpg" />
+    <Content Include="Content\po\images\home\girl1.jpg" />
+    <Content Include="Content\po\images\home\girl2.jpg" />
+    <Content Include="Content\po\images\home\girl3.jpg" />
+    <Content Include="Content\po\images\home\iframe1.png" />
+    <Content Include="Content\po\images\home\iframe2.png" />
+    <Content Include="Content\po\images\home\iframe3.png" />
+    <Content Include="Content\po\images\home\iframe4.png" />
+    <Content Include="Content\po\images\home\logo.png" />
+    <Content Include="Content\po\images\home\map.png" />
+    <Content Include="Content\po\images\home\new.png" />
+    <Content Include="Content\po\images\home\partner1.png" />
+    <Content Include="Content\po\images\home\partner2.png" />
+    <Content Include="Content\po\images\home\partner3.png" />
+    <Content Include="Content\po\images\home\partner4.png" />
+    <Content Include="Content\po\images\home\pricing.png" />
+    <Content Include="Content\po\images\home\product1.jpg" />
+    <Content Include="Content\po\images\home\product2.jpg" />
+    <Content Include="Content\po\images\home\product3.jpg" />
+    <Content Include="Content\po\images\home\product4.jpg" />
+    <Content Include="Content\po\images\home\product5.jpg" />
+    <Content Include="Content\po\images\home\product6.jpg" />
+    <Content Include="Content\po\images\home\recommend1.jpg" />
+    <Content Include="Content\po\images\home\recommend2.jpg" />
+    <Content Include="Content\po\images\home\recommend3.jpg" />
+    <Content Include="Content\po\images\home\sale.png" />
+    <Content Include="Content\po\images\home\searchicon.png" />
+    <Content Include="Content\po\images\home\shipping.jpg" />
+    <Content Include="Content\po\images\product-details\1.jpg" />
+    <Content Include="Content\po\images\product-details\new.jpg" />
+    <Content Include="Content\po\images\product-details\rating.png" />
+    <Content Include="Content\po\images\product-details\share.png" />
+    <Content Include="Content\po\images\product-details\similar1.jpg" />
+    <Content Include="Content\po\images\product-details\similar2.jpg" />
+    <Content Include="Content\po\images\product-details\similar3.jpg" />
+    <Content Include="Content\po\images\shop\advertisement.jpg" />
+    <Content Include="Content\po\images\shop\product10.jpg" />
+    <Content Include="Content\po\images\shop\product11.jpg" />
+    <Content Include="Content\po\images\shop\product12.jpg" />
+    <Content Include="Content\po\images\shop\product7.jpg" />
+    <Content Include="Content\po\images\shop\product8.jpg" />
+    <Content Include="Content\po\images\shop\product9.jpg" />
+    <Content Include="Content\po\js\bootstrap.min.js" />
+    <Content Include="Content\po\js\contact.js" />
+    <Content Include="Content\po\js\gmaps.js" />
+    <Content Include="Content\po\js\html5shiv.js" />
+    <Content Include="Content\po\js\jquery.js" />
+    <Content Include="Content\po\js\jquery.prettyPhoto.js" />
+    <Content Include="Content\po\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\po\js\main.js" />
+    <Content Include="Content\po\js\price-range.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1284,6 +1368,9 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Content\po\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\po\fonts\FontAwesome.otf" />
+    <Content Include="Content\po\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1350,6 +1437,8 @@
     <Content Include="Views\usertable\Details.cshtml" />
     <Content Include="Views\usertable\Edit.cshtml" />
     <Content Include="Views\usertable\Index.cshtml" />
+    <Content Include="Views\Trangchu\Index.cshtml" />
+    <Content Include="Views\Trangchu\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Anh\" />

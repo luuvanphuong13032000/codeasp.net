@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using storelaptop.Models;
+using PagedList;
 
 namespace storelaptop.Controllers
 {
@@ -16,19 +17,49 @@ namespace storelaptop.Controllers
         private quantriEntities db = new quantriEntities();
 
         // GET: sanphams
-        public ActionResult Index(string SearchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string SearchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.MaSortParm = String.IsNullOrEmpty(sortOrder) ? "ma_desc" : "";
+            ViewBag.GiaSortParm = sortOrder == "Gia" ? "gia_desc" : "Gia";
 
-            var sanphams = from s in db.sanphams.Include(s => s.danhmucsanpham)
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var sanphams = from s in db.sanphams
                            select s;
             if (!String.IsNullOrEmpty(SearchString))
             {
-                sanphams = sanphams.Where(s => s.tensanpham.Contains(SearchString));
-
+                sanphams = sanphams.Where(s => s.tensanpham.Contains(SearchString)
+                                       || s.mota.Contains(SearchString));
             }
-            return View(sanphams);
-            //var sanphams = db.sanphams.Include(s => s.danhmucsanpham);
-            // return View(sanphams.ToList());
+            switch (sortOrder)
+            {
+                case "ma_desc":
+                    sanphams = sanphams.OrderByDescending(s => s.masanpham);
+                    break;
+                case "Gia":
+                    sanphams = sanphams.OrderBy(s => s.gia);
+                    break;
+                case "gia_desc":
+                    sanphams = sanphams.OrderByDescending(s => s.gia);
+                    break;
+                default:  // Name ascending 
+                    sanphams = sanphams.OrderBy(s => s.masanpham);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(sanphams.ToPagedList(pageNumber, pageSize));
         }
         // public ActionResult Index()
         //{

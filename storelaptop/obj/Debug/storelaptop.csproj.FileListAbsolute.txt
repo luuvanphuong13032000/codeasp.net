@@ -86,3 +86,7 @@ C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\CKFinder.pdb
 C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\CKFinder_FileEditor.pdb
 C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\CKFinder_ImageResize.pdb
 C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\CKFinder_Watermark.pdb
+C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\PagedList.dll
+C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\PagedList.Mvc.dll
+C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\PagedList.xml
+C:\Users\DELL\source\repos\storelaptop\storelaptop\bin\PagedList.Mvc.xml

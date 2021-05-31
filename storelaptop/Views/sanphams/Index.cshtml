@@ -1,4 +1,7 @@
-﻿@model IEnumerable<storelaptop.Models.sanpham>
+﻿
+@model PagedList.IPagedList<storelaptop.Models.sanpham>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -22,65 +25,71 @@
 <p style="text-align:center">
     <button>   @Html.ActionLink("Thêm Sản Phẩm", "Create")</button>
 </p>
-@using (Html.BeginForm("Index", "tintucs", FormMethod.Get))
+@using (Html.BeginForm("Index", "sanphams", FormMethod.Get))
 {
     <p style="text-align:center">
         Nhập Tên Tìm kiếm: @Html.TextBox("SearchString")
         <input type="submit" value="Tìm Kiếm" />
     </p>
 }
-
-    <table class="table" style="text-align:center;border:1px black solid;width:1200px;margin:0 auto;margin-bottom:100px">
-        <tr>
-            <th style="text-align:center">
-                @Html.DisplayNameFor(model => model.masanpham)
-            </th>
-            <th style="text-align:center;width:200px">
-                @Html.DisplayNameFor(model => model.anh)
-            </th>
-            <th style="text-align:center">
-                @Html.DisplayNameFor(model => model.tensanpham)
-            </th>
-            <th style="text-align:center">
-                @Html.DisplayNameFor(model => model.mota)
-            </th>
-            <th style="text-align:center">
-                @Html.DisplayNameFor(model => model.gia)
-            </th>
-            <th style="text-align:center">
-                @Html.DisplayNameFor(model => model.danhmucsanpham.tendanhmucsanpham)
-            </th>
-            <th style="text-align:center; width:250px">Chức Năng</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table class="table" style="text-align:center;border:1px black solid;width:1000px;margin:0 auto;">
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.masanpham)
-                </td>
-                <td>
-                    <img src="~/Anh/@item.anh" width="200px" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tensanpham)
-                </td>
-                <td>
-                    @Html.Raw(item.mota)
+                <th style="text-align: center" width="100px">
+                    @Html.ActionLink("Mã Sản Phẩm", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th style="text-align:center" width="100px">
+                    Ảnh
+                </th>
+                <th style="text-align: center" width="150px">
+                    Tên Sản Phẩm
+                </th>
+                <th style="text-align: center">
+                    Mô tả
+                </th>
+                <th style="text-align: center">
+                    @Html.ActionLink("Giá Thành", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th style="text-align: center" width="150px">
+                    Tên Danh Mục Sản Phẩm
+                </th>
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.gia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.danhmucsanpham.tendanhmucsanpham)
-                </td>
-                <td>
-                    <button> @Html.ActionLink("Edit", "Edit", new { id = item.masanpham })</button> |
-                    <button> @Html.ActionLink("Details", "Details", new { id = item.masanpham })</button> |
-                    <button>  @Html.ActionLink("Delete", "Delete", new { id = item.masanpham })</button>
-                </td>
+                <th style="text-align: center; width:230px">Chức Năng</th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.masanpham)
+                    </td>
+                    <td>
+                        <img src="~/Anh/@item.anh" width="200px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tensanpham)
+                    </td>
+                    <td>
+                        @Html.Raw(item.mota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.danhmucsanpham.tendanhmucsanpham)
+                    </td>
+                    <td>
+                        <button> @Html.ActionLink("Edit", "Edit", new { id = item.masanpham })</button> |
+                        <button> @Html.ActionLink("Details", "Details", new { id = item.masanpham })</button> |
+                        <button>  @Html.ActionLink("Delete", "Delete", new { id = item.masanpham })</button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </table>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
